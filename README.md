@@ -47,4 +47,4 @@ See [full documentation](./README.md) for:
 
 ---
 
-**Made with ❤️ by the PolyMind Team**
+**Made with ❤️ by inisterchill**
