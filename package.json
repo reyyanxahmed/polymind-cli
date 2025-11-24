@@ -1,0 +1,75 @@
+{
+  "name": "@polymind/cli",
+  "version": "1.0.0",
+  "description": "PolyMind CLI - Multi-model AI council debates in your terminal with interactive TUI",
+  "author": "PolyMind Team",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "polymind": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "ai",
+    "cli",
+    "gemini",
+    "debate",
+    "council",
+    "terminal",
+    "tui",
+    "llm",
+    "multi-agent",
+    "chat",
+    "interactive"
+  ],
+  "scripts": {
+    "build": "tsc && chmod +x dist/index.js",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build",
+    "test": "vitest",
+    "lint": "tsc --noEmit",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.2",
+    "conf": "^13.0.1",
+    "dotenv": "^16.6.1",
+    "gradient-string": "^3.0.0",
+    "ink": "^6.5.1",
+    "ink-gradient": "^3.0.0",
+    "ink-spinner": "^5.0.0",
+    "ink-text-input": "^6.0.0",
+    "nanoid": "^5.0.8",
+    "ora": "^9.0.0",
+    "react": "^19.0.0",
+    "strip-ansi": "^7.1.0",
+    "terminal-link": "^3.0.0",
+    "update-notifier": "^7.3.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "@types/react": "^19.0.0",
+    "@types/update-notifier": "^6.0.8",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reyyanxahmed/polymind-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/reyyanxahmed/polymind-cli/issues"
+  },
+  "homepage": "https://github.com/reyyanxahmed/polymind-cli#readme"
+}
