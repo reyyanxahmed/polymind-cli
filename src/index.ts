@@ -68,6 +68,29 @@ program.addCommand(statusCommand);
 program.addCommand(initCommand);
 program.addCommand(personasCommand);
 
+const commandsRequiringEnv = new Set(['interactive', 'debate', 'chat']);
+
+program.hook('preAction', (_thisCommand, actionCommand) => {
+  const name = actionCommand.name();
+  const parentName = actionCommand.parent?.name?.() ?? '';
+
+  if (commandsRequiringEnv.has(name) || commandsRequiringEnv.has(parentName)) {
+    const envCheck = validateEnv();
+    if (!envCheck.success) {
+      console.error(chalk.red('✗ Environment validation failed:'));
+      envCheck.errors?.forEach((err) =>
+        console.error(chalk.yellow('  •'), err)
+      );
+      console.error(
+        '\nRun',
+        chalk.cyan('polymind init'),
+        chalk.dim('to configure your API keys')
+      );
+      process.exit(1);
+    }
+  }
+});
+
 // Global error handler with security
 process.on('unhandledRejection', (error: Error) => {
   const safeMessage = getSafeErrorMessage(error);
@@ -86,15 +109,6 @@ process.on('uncaughtException', (error: Error) => {
   }
   process.exit(1);
 });
-
-// Validate environment before running
-const envCheck = validateEnv();
-if (!envCheck.success) {
-  console.error(chalk.red('✗ Environment validation failed:'));
-  envCheck.errors?.forEach(err => console.error(chalk.yellow('  •'), err));
-  console.error(chalk.dim('\\nRun'), chalk.cyan('polymind init'), chalk.dim('to configure'));
-  process.exit(1);
-}
 
 checkEnvironment();
 
