@@ -1,191 +1,51 @@
 # Contributing to PolyMind CLI
 
-Thank you for your interest in contributing! 🎉
+We love your input! We want to make contributing to PolyMind CLI as easy and transparent as possible, whether it's:
 
-## Code of Conduct
-
-Be respectful, inclusive, and constructive. We're all here to build something awesome together.
-
-## How to Contribute
-
-### Reporting Bugs
-
-1. Check existing issues first
-2. Use the bug report template
-3. Include:
-   - Steps to reproduce
-   - Expected vs actual behavior
-   - System info (`polymind status`)
-   - Error messages (redacted)
-
-### Suggesting Features
-
-1. Open a discussion first
-2. Describe the use case
-3. Explain why it benefits users
-4. Consider implementation complexity
-
-### Pull Requests
-
-1. Fork the repo
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Make your changes
-4. Add tests if applicable
-5. Run linting: `npm run lint`
-6. Build successfully: `npm run build`
-7. Commit with conventional commits
-8. Push and open a PR
+- Reporting a bug
+- Discussing the current state of the code
+- Submitting a fix
+- Proposing new features
+- Becoming a maintainer
 
 ## Development Setup
 
-```bash
-# Clone your fork
-git clone https://github.com/YOUR_USERNAME/polymind-cli.git
-cd polymind-cli
+1.  **Clone the repo and install dependencies:**
 
-# Install dependencies
-npm install
+    ```bash
+    git clone https://github.com/reyyanxahmed/polymind-cli.git
+    cd polymind-cli
+    npm install
+    ```
 
-# Build
-npm run build
+2.  **Create a `.env` file:**
 
-# Link globally for testing
-npm link
+    Copy `.env.example` to `.env` and add your API keys.
 
-# Test your changes
-polymind interactive
-```
+    ```bash
+    cp .env.example .env
+    ```
 
-## Commit Convention
+3.  **Run the CLI in development mode:**
 
-We use Conventional Commits:
+    ```bash
+    npm run dev -- debate "Test Query"
+    ```
 
-```
-feat: add /export command
-fix: resolve slash command autocomplete bug
-docs: update README with security features
-style: format code with prettier
-refactor: simplify slash command parser
-test: add tests for security utilities
-chore: update dependencies
-```
+## Pull Request Process
 
-## Code Style
+1.  Ensure any install or build dependencies are removed before the end of the layer when doing a build.
+2.  Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
+3.  Increase the version numbers in any examples files and the README.md to the new version that this Pull Request would represent. The versioning scheme we use is [SemVer](http://semver.org/).
+4.  You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
 
-- TypeScript strict mode
-- ESLint rules enforced
-- Prettier for formatting
-- Meaningful variable names
-- Comments for complex logic
+## Coding Standards
 
-## Testing
+- **TypeScript**: We use strict TypeScript. No `any` unless absolutely necessary.
+- **Formatting**: We use Prettier. Run `npm run format` before committing.
+- **Linting**: We use ESLint. Run `npm run lint` to check for issues.
+- **Testing**: We use Vitest. Run `npm test` to run the test suite.
 
-```bash
-# Run type check
-npm run type-check
+## License
 
-# Run tests (when available)
-npm test
-
-# Manual testing
-npm run dev
-```
-
-## Project Structure
-
-```
-src/
-├── commands/       # CLI commands
-├── ui/            # Terminal UI components
-│   ├── apps/      # Full-page applications
-│   └── components/ # Reusable UI pieces
-├── utils/         # Utilities
-└── config/        # Configuration management
-```
-
-## Adding a New Command
-
-1. Create `src/commands/your-command.ts`
-2. Export command from file
-3. Register in `src/index.ts`
-4. Add tests
-5. Update README.md
-
-Example:
-
-```typescript
-// src/commands/analyze.ts
-import { Command } from 'commander';
-
-export const analyzeCommand = new Command('analyze')
-  .description('Analyze debate results')
-  .argument('<debateId>', 'Debate ID to analyze')
-  .action(async (debateId) => {
-    // Implementation
-  });
-```
-
-```typescript
-// src/index.ts
-import { analyzeCommand } from './commands/analyze.js';
-program.addCommand(analyzeCommand);
-```
-
-## Adding a Slash Command
-
-Edit `src/utils/slash-commands.ts`:
-
-```typescript
-export const SLASH_COMMANDS: Record<string, SlashCommand> = {
-  // ... existing commands
-  
-  analyze: {
-    name: 'analyze',
-    aliases: ['a'],
-    description: 'Analyze conversation',
-    usage: '/analyze',
-    examples: ['/analyze', '/a'],
-    execute: async (args, context) => {
-      // Implementation
-      return {
-        success: true,
-        message: 'Analysis complete!',
-      };
-    },
-  },
-};
-```
-
-## Security Guidelines
-
-- Never commit API keys or secrets
-- Sanitize all user inputs
-- Redact sensitive data in logs
-- Validate environment variables
-- Use rate limiting for API calls
-- Follow principle of least privilege
-
-## Documentation
-
-- Update README.md for user-facing changes
-- Add JSDoc comments for functions
-- Update examples if behavior changes
-- Keep CHANGELOG.md updated
-
-## Release Process
-
-1. Update version in `package.json`
-2. Update CHANGELOG.md
-3. Commit: `git commit -m "chore: release v1.x.x"`
-4. Tag: `git tag v1.x.x`
-5. Push: `git push origin main --tags`
-6. Create GitHub release
-7. npm publish (automated via GitHub Actions)
-
-## Questions?
-
-- Open a discussion on GitHub
-- Join our Discord (if available)
-- Email: support@polymind.ai
-
-Thank you for contributing! 🚀
+By contributing, you agree that your contributions will be licensed under its MIT License.
