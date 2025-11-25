@@ -4,6 +4,7 @@
 
 import { config as loadEnv } from 'dotenv';
 import { z } from 'zod';
+import { config } from '../config/storage.js';
 
 // Load environment variables
 loadEnv();
@@ -37,14 +38,17 @@ export function validateEnv(): { success: boolean; errors?: string[] } {
     };
   }
 
-  // Check if at least one API key is configured
+  // Check if at least one API key is configured (env vars OR config store)
   const env = result.data;
-  const hasApiKey = env.GEMINI_API_KEY || env.CLAUDE_API_KEY || env.OPENAI_API_KEY || env.OLLAMA_BASE_URL;
+  const hasEnvKey = env.GEMINI_API_KEY || env.CLAUDE_API_KEY || env.OPENAI_API_KEY || env.OLLAMA_BASE_URL;
   
-  if (!hasApiKey) {
+  // Also check config store
+  const configApiKey = config.get('apiKey');
+  
+  if (!hasEnvKey && !configApiKey) {
     return {
       success: false,
-      errors: ['No API keys configured. Please set at least one provider API key in .env'],
+      errors: ['No API keys configured. Set via environment variables or run: polymind init'],
     };
   }
 
