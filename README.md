@@ -4,7 +4,7 @@
 
 > **Multi-Model AI Council & Agentic Workflows in Your Terminal**
 
-[![npm version](https://img.shields.io/npm/v/@polymind/cli.svg)](https://www.npmjs.com/package/@polymind/cli)
+[![npm version](https://img.shields.io/npm/v/@polymind/cli.svg)](https://www.npmjs.com/package/@polymind-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
 
