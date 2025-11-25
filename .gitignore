@@ -42,3 +42,14 @@ Thumbs.db
 *.tmp
 .temp/
 tmp/
+
+# Personal documentation and chat logs
+BUILD_COMPLETE.md
+CLI_COMPLETE.md
+DEPLOYMENT.md
+DEVELOPER.md
+GLOSSARY.md
+IMPLEMENTATION_SUMMARY.md
+QUICKSTART.md
+NPM_DEPLOYMENT.md
+polymind.md
