@@ -69,6 +69,30 @@ export const GEMINI_MODELS: Record<string, ModelInfo> = {
 	},
 };
 
+// Provider registry
+export const PROVIDERS = {
+	gemini: {
+		name: 'Google Gemini',
+		defaultModel: 'gemini-3-pro-preview',
+		models: Object.keys(GEMINI_MODELS),
+	},
+	openai: {
+		name: 'OpenAI',
+		defaultModel: 'gpt-4o',
+		models: ['gpt-4o', 'gpt-4-turbo', 'gpt-4', 'gpt-3.5-turbo'],
+	},
+	anthropic: {
+		name: 'Anthropic',
+		defaultModel: 'claude-3.5-sonnet',
+		models: ['claude-3.5-sonnet', 'claude-3-opus', 'claude-3-sonnet', 'claude-3-haiku'],
+	},
+	xai: {
+		name: 'xAI',
+		defaultModel: 'grok-beta',
+		models: ['grok-beta'],
+	},
+};
+
 // Fallback order for when models are overloaded
 const FALLBACK_ORDER = ['gemini-3-pro-preview', 'gemini-2.5-pro', 'gemini-2.5-flash'];
 
@@ -77,6 +101,7 @@ export class StreamingClient {
 	private apiKey: string;
 	private model: string;
 	private geminiClient?: GoogleGenerativeAI;
+	private history: Array<{ role: string; content: string }> = [];
 
 	constructor(provider: string, apiKey: string, model?: string) {
 		this.provider = provider;
@@ -271,5 +296,27 @@ export class StreamingClient {
 	 */
 	getCurrentModel(): ModelInfo | null {
 		return GEMINI_MODELS[this.model] || null;
+	}
+
+	/**
+	 * Stream chat with history support
+	 */
+	async *streamChat(message: string, systemPrompt?: string): AsyncGenerator<StreamChunk> {
+		this.history.push({ role: 'user', content: message });
+		yield* this.stream(message, systemPrompt);
+	}
+
+	/**
+	 * Clear chat history
+	 */
+	clearHistory(): void {
+		this.history = [];
+	}
+
+	/**
+	 * Get model info by ID
+	 */
+	getModelInfo(modelId: string): ModelInfo | null {
+		return GEMINI_MODELS[modelId] || null;
 	}
 }

@@ -16,6 +16,9 @@ import { readFileSync } from 'fs';
 import { debateCommand } from './commands/debate.js';
 import { chatCommand } from './commands/chat.js';
 import { interactiveCommand } from './commands/interactive.js';
+import { liveCommand } from './commands/live.js';
+import { councilCommand } from './commands/council.js';
+import { modelsCommand } from './commands/models.js';
 import { configCommand } from './commands/config.js';
 import { statusCommand } from './commands/status.js';
 import { initCommand } from './commands/init.js';
@@ -49,26 +52,30 @@ program
     'after',
     `
 ${chalk.dim('Examples:')}
-  ${chalk.cyan('$')} polymind debate "Should we colonize Mars?"
-  ${chalk.cyan('$')} polymind chat --persona explorer
-  ${chalk.cyan('$')} polymind init --provider gemini
-  ${chalk.cyan('$')} polymind status
+  ${chalk.cyan('$')} polymind live                              ${chalk.dim('# Start live streaming chat')}
+  ${chalk.cyan('$')} polymind council "your query" --gemini-deep ${chalk.dim('# LLM Council mode')}
+  ${chalk.cyan('$')} polymind debate "Should we colonize Mars?"   ${chalk.dim('# Multi-agent debate')}
+  ${chalk.cyan('$')} polymind models                             ${chalk.dim('# List available models')}
+  ${chalk.cyan('$')} polymind init                               ${chalk.dim('# Configure API keys')}
   
-${chalk.dim('Documentation:')} ${chalk.blue('https://polymind.ai/docs')}
-${chalk.dim('Report issues:')} ${chalk.blue('https://github.com/reyyanxahmed/polymind/issues')}
+${chalk.dim('Documentation:')} ${chalk.blue('https://github.com/reyyanxahmed/polymind-cli')}
+${chalk.dim('Report issues:')} ${chalk.blue('https://github.com/reyyanxahmed/polymind-cli/issues')}
     `
   );
 
 // Add commands
-program.addCommand(interactiveCommand); // Main interactive mode (like Gemini/Copilot)
+program.addCommand(liveCommand); // Default streaming chat (like polymind live)
+program.addCommand(councilCommand); // LLM Council mode
+program.addCommand(interactiveCommand); // Interactive mode with slash commands
 program.addCommand(debateCommand);
 program.addCommand(chatCommand);
+program.addCommand(modelsCommand);
 program.addCommand(configCommand);
 program.addCommand(statusCommand);
 program.addCommand(initCommand);
 program.addCommand(personasCommand);
 
-const commandsRequiringEnv = new Set(['interactive', 'debate', 'chat']);
+const commandsRequiringEnv = new Set(['live', 'council', 'interactive', 'debate', 'chat']);
 
 program.hook('preAction', (_thisCommand, actionCommand) => {
   const name = actionCommand.name();

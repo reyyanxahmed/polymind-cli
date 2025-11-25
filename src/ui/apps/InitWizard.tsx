@@ -40,10 +40,21 @@ export const InitWizard: React.FC<InitWizardProps> = ({
       return;
     }
     setApiKey(value);
+    
+    // Save to config store
     config.set('provider', provider as any);
     config.set('apiKey', value);
-    console.log(chalk.green('\n✓ Configuration saved!'));
-    console.log(chalk.dim('Run'), chalk.cyan('polymind debate "your query"'), chalk.dim('to start'));
+    
+    // Also suggest setting environment variable for convenience
+    const envVarName = provider === 'gemini' ? 'GEMINI_API_KEY' : 
+                       provider === 'openai' ? 'OPENAI_API_KEY' :
+                       provider === 'anthropic' ? 'ANTHROPIC_API_KEY' :
+                       provider === 'xai' ? 'XAI_API_KEY' : 'API_KEY';
+    
+    console.log(chalk.green('\n✓ Configuration saved to config file!'));
+    console.log(chalk.dim('\n💡 Tip: You can also set ') + chalk.cyan(envVarName) + chalk.dim(' in your environment'));
+    console.log(chalk.dim('   export ') + chalk.cyan(envVarName) + chalk.dim('="your-key-here"'));
+    console.log(chalk.dim('\nRun'), chalk.cyan('polymind live'), chalk.dim('or'), chalk.cyan('polymind council "query" --gemini-deep'), chalk.dim('to start\n'));
     exit();
   };
 
