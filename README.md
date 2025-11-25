@@ -131,11 +131,12 @@ polymind interactive
 
 PolyMind features a rich **Terminal User Interface** built with React and Ink.
 
-![TUI Concept](docs/assets/tui_layout_concept.png)
+![PolyMind CLI Help Screen](docs/assets/polymind_help_screen.png)
 
-- **Split Views**: Monitor the debate stream and council status simultaneously.
-- **Status Indicators**: See which model is "Thinking", "Drafting", or "Reviewing".
-- **Rich Text**: Markdown rendering, code syntax highlighting, and emoji support.
+- **Intuitive Commands**: Access the LLM Council, live chat, debates, and configuration tools
+- **Rich Terminal Display**: Beautiful gradient ASCII art and clear command documentation
+- **Multiple Modes**: Council deliberation, live streaming, debates, and interactive sessions
+- **Status Indicators**: Monitor system configuration and model availability in real-time
 
 ---
 
