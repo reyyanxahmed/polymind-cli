@@ -2,48 +2,75 @@
 
 > Multi-model AI council debates in your terminal with interactive TUI
 
-[![npm version](https://img.shields.io/npm/v/@polymind/cli.svg)](https://www.npmjs.com/package/@polymind/cli)
+[![npm version](https://img.shields.io/npm/v/polymind-cli.svg)](https://www.npmjs.com/package/polymind-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
 ## 🚀 Quick Start
 
 ```bash
 # Install globally
-npm install -g @polymind/cli
+npm install -g polymind-cli
+
+# Or use without installing
+npx polymind-cli --version
 
 # Initialize configuration
 polymind init
 
-# Start interactive mode (like Gemini/Copilot)
-polymind interactive
+# Start LLM Council
+polymind council "your query" --gemini-deep
 
-# Or start a quick debate
-polymind debate "Should AI have rights?"
+# Or start interactive mode
+polymind interactive
 ```
 
 ## ✨ Key Features
 
+- 🏛️ **LLM Council Mode** - Multiple AI models collaborate with peer review
+- 🎯 **Gemini Deep Preset** - High-reasoning Gemini models for complex queries
 - 🎭 **Interactive Mode** - Gemini/Copilot-style persistent TUI chat
 - ⚡ **Slash Commands** - Quick actions with `/debate`, `/persona`, `/help`, etc.
-- 🤖 **Multi-Model Debates** - Council of AI personas deliberate on questions
-- 🎨 **Beautiful UI** - Animated terminal interface with gradients
+- 🤖 **Multi-Model Support** - Gemini (10 models), GPT, Claude, Grok
+- 🎨 **Beautiful TUI** - Tab view for council responses
 - 🔒 **Secure** - Input sanitization, rate limiting, API key protection
-- 🎲 **Personality** - 60+ quirks, quotes, and easter eggs
+- 📚 **RAG Support** - Context-aware responses from codebase
 
 ## 📚 Documentation
 
-See [full documentation](./README.md) for:
-- Installation guide
-- Configuration options
-- Slash command reference
-- Security features
-- Development setup
+Comprehensive guides:
+- [Gemini Models Guide](./GEMINI_MODELS.md) - All 10 Gemini models and council presets
+- [Installation Guide](./INSTALL.md) - Detailed setup instructions
+- [Security Guide](./SECURITY.md) - Security features and best practices
+- [Developer Guide](./DEVELOPER.md) - Contributing and development setup
+
+### Quick Usage
+
+**LLM Council:**
+```bash
+# Use Gemini Deep preset (recommended)
+polymind council "Explain quantum computing" --gemini-deep
+
+# Custom council with multiple providers
+polymind council "Your question" \
+  --gemini-key $GEMINI_API_KEY \
+  --openai-key $OPENAI_API_KEY \
+  --anthropic-key $ANTHROPIC_API_KEY
+```
+
+**Available Commands:**
+- `polymind council <query>` - Start LLM Council deliberation
+- `polymind models` - List all available models
+- `polymind status` - Check system status
+- `polymind init` - Configure API keys
+- `polymind interactive` - Start interactive chat
+- `polymind debate <topic>` - Multi-agent debate
 
 ## 🔗 Links
 
+- **npm**: https://www.npmjs.com/package/polymind-cli
 - **GitHub**: https://github.com/reyyanxahmed/polymind-cli
-- **npm**: https://www.npmjs.com/package/@polymind/cli
 - **Issues**: https://github.com/reyyanxahmed/polymind-cli/issues
+- **Documentation**: [Gemini Models](./GEMINI_MODELS.md) | [Install Guide](./INSTALL.md) | [Security](./SECURITY.md)
 
 ---
 
