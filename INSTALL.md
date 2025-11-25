@@ -200,4 +200,4 @@ Once installed:
 
 - 📖 Docs: https://polymind.ai/docs
 - 🐛 Issues: https://github.com/reyyanxahmed/polymind/issues
-- 💬 Discord: https://discord.gg/polymind
+- 💬 Discord: https://discord.gg/4vCws5dfNh
