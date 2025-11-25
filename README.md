@@ -4,7 +4,7 @@
 
 > **Multi-Model AI Council & Agentic Workflows in Your Terminal**
 
-[![npm version](https://img.shields.io/npm/v/@polymind/cli.svg)](https://www.npmjs.com/package/polymind-cli)
+[![npm version](https://img.shields.io/npm/v/polymind-cli.svg)](https://www.npmjs.com/package/polymind-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
 
@@ -37,10 +37,10 @@ Ensure you have **Node.js 18+** installed.
 
 ```bash
 # Install globally via npm
-npm install -g @polymind/cli
+npm install -g polymind-cli
 
 # Or run directly with npx
-npx @polymind/cli debate "Is Rust better than C++?"
+npx polymind-cli debate "Is Rust better than C++?"
 ```
 
 ---
